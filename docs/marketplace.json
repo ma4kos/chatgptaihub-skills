@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "name": "chatgptaihub-free-skills-marketplace",
+  "description": "Curated free SMB ChatGPT/Codex-ready SKILL.md packs with editorial trust. Not a scraper index.",
+  "homepage": "https://chatgptaihub.com",
+  "hosting": {
+    "primary": "github",
+    "surfaces": ["readme", "pages", "releases", "marketplace.json"],
+    "editorial": "notion-internal-only",
+    "not_public_catalog": ["vpc-dashboard", "secret-bound-estate-skills", "chatgptaihub-webmaster"]
+  },
+  "license_placeholder": "MIT — see LICENSE",
+  "categories": [
+    {"id": "support", "label": "Support", "description": "Customer triage, reply drafts, escalation hygiene"},
+    {"id": "sales", "label": "Sales", "description": "Outreach, CRM notes, pipeline briefs"},
+    {"id": "ops", "label": "Ops", "description": "Meetings to actions, weekly briefs, operational checklists"},
+    {"id": "finance", "label": "Finance", "description": "Invoice and expense summaries without live credentials"},
+    {"id": "content", "label": "Content", "description": "Drafts, outlines, editorial checklists"},
+    {"id": "coding-assistant", "label": "Coding assistant", "description": "Repo hygiene and Codex-oriented helpers"}
+  ],
+  "skills": [
+    {"slug": "meeting-notes-to-actions", "name": "Meeting Notes to Actions", "description": "Turn raw meeting notes into owners, due dates, and a follow-up checklist.", "category": "ops", "path": "skills/meeting-notes-to-actions/SKILL.md", "version": "0.1.0", "status": "published", "tags": ["meetings", "actions", "smb", "ops"], "requires_secrets": false, "env_placeholders": []},
+    {"slug": "customer-email-triage", "name": "Customer Email Triage", "description": "Classify inbound customer email into priority buckets with draft reply outlines.", "category": "support", "path": "skills/customer-email-triage/SKILL.md", "version": "0.1.0", "status": "published", "tags": ["email", "support", "triage", "smb"], "requires_secrets": false, "env_placeholders": ["SUPPORT_TONE", "SLA_HOURS_URGENT"]},
+    {"slug": "weekly-ops-brief", "name": "Weekly Ops Brief", "description": "Assemble a one-page weekly operations brief from bullet inputs.", "category": "ops", "path": "skills/weekly-ops-brief/SKILL.md", "version": "0.1.0", "status": "published", "tags": ["ops", "brief", "weekly", "smb"], "requires_secrets": false, "env_placeholders": ["OPS_BRIEF_TZ", "OPS_BRIEF_AUDIENCE"]},
+    {"slug": "outbound-email-draft", "name": "Outbound Email Draft", "description": "Draft a single SMB outbound sales email from prospect context with a clear CTA — no auto-send.", "category": "sales", "path": "skills/outbound-email-draft/SKILL.md", "version": "0.1.0", "status": "draft", "tags": ["sales", "outbound", "email", "smb"], "requires_secrets": false, "env_placeholders": ["SALES_SENDER_NAME", "SALES_SENDER_TITLE", "SALES_CTA_DEFAULT"]},
+    {"slug": "checklist-from-sop", "name": "Checklist from SOP", "description": "Turn a pasted SOP or runbook into a numbered operator checklist with owners and evidence fields.", "category": "ops", "path": "skills/checklist-from-sop/SKILL.md", "version": "0.1.0", "status": "draft", "tags": ["ops", "sop", "checklist", "smb"], "requires_secrets": false, "env_placeholders": ["SOP_DEFAULT_OWNER", "SOP_EVIDENCE_DIR"]},
+    {"slug": "linkedin-post-outline", "name": "LinkedIn Post Outline", "description": "Turn bullet talking points into a LinkedIn post outline with hook, body beats, and CTA — draft only.", "category": "content", "path": "skills/linkedin-post-outline/SKILL.md", "version": "0.1.0", "status": "draft", "tags": ["content", "linkedin", "outline", "smb"], "requires_secrets": false, "env_placeholders": ["CONTENT_BRAND_VOICE", "CONTENT_CTA_URL_LABEL"]}
+  ],
+  "schema_notes": {
+    "skills": "Production catalog listings. Each entry must have slug, name, description, category, path, version, status, tags, requires_secrets, env_placeholders; path must resolve to an existing SKILL.md.",
+    "example_skills": "Removed in v0.1.1 after promoting the three starter stubs into skills[]. New drafts land via PR directly into skills/ + skills[] after editorial review (Notion internal).",
+    "promotion": "Draft → editorial review (Notion) → PR → skills[] with status published → optional Release tag / Manus feature.",
+    "p1": "P1 sales/ops/content drafts added in v0.2.0: outbound-email-draft, checklist-from-sop, linkedin-post-outline."
+  }
+}
