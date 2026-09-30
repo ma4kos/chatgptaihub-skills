@@ -1,0 +1,118 @@
+{
+  "version": "0.1.1",
+  "name": "chatgptaihub-free-skills-marketplace",
+  "description": "Curated free SMB ChatGPT/Codex-ready SKILL.md packs with editorial trust. Not a scraper index.",
+  "homepage": "https://chatgptaihub.com",
+  "hosting": {
+    "primary": "github",
+    "surfaces": [
+      "readme",
+      "pages",
+      "releases",
+      "marketplace.json"
+    ],
+    "editorial": "notion-internal-only",
+    "not_public_catalog": [
+      "vpc-dashboard",
+      "secret-bound-estate-skills",
+      "chatgptaihub-webmaster"
+    ]
+  },
+  "license_placeholder": "MIT (D13) \u2014 LICENSE file TBD at public remote publish",
+  "categories": [
+    {
+      "id": "support",
+      "label": "Support",
+      "description": "Customer triage, reply drafts, escalation hygiene"
+    },
+    {
+      "id": "sales",
+      "label": "Sales",
+      "description": "Outreach, CRM notes, pipeline briefs"
+    },
+    {
+      "id": "ops",
+      "label": "Ops",
+      "description": "Meetings to actions, weekly briefs, operational checklists"
+    },
+    {
+      "id": "finance",
+      "label": "Finance",
+      "description": "Invoice and expense summaries without live credentials"
+    },
+    {
+      "id": "content",
+      "label": "Content",
+      "description": "Drafts, outlines, editorial checklists"
+    },
+    {
+      "id": "coding-assistant",
+      "label": "Coding assistant",
+      "description": "Repo hygiene and Codex-oriented helpers"
+    }
+  ],
+  "skills": [
+    {
+      "slug": "meeting-notes-to-actions",
+      "name": "Meeting Notes to Actions",
+      "description": "Turn raw meeting notes into owners, due dates, and a follow-up checklist.",
+      "category": "ops",
+      "path": "skills/meeting-notes-to-actions/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "meetings",
+        "actions",
+        "smb",
+        "ops"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": []
+    },
+    {
+      "slug": "customer-email-triage",
+      "name": "Customer Email Triage",
+      "description": "Classify inbound customer email into priority buckets with draft reply outlines.",
+      "category": "support",
+      "path": "skills/customer-email-triage/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "email",
+        "support",
+        "triage",
+        "smb"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "SUPPORT_TONE",
+        "SLA_HOURS_URGENT"
+      ]
+    },
+    {
+      "slug": "weekly-ops-brief",
+      "name": "Weekly Ops Brief",
+      "description": "Assemble a one-page weekly operations brief from bullet inputs.",
+      "category": "ops",
+      "path": "skills/weekly-ops-brief/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "ops",
+        "brief",
+        "weekly",
+        "smb"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "OPS_BRIEF_TZ",
+        "OPS_BRIEF_AUDIENCE"
+      ]
+    }
+  ],
+  "schema_notes": {
+    "skills": "Production catalog listings. Each entry must have slug, name, description, category, path, version, status, tags, requires_secrets, env_placeholders; path must resolve to an existing SKILL.md.",
+    "example_skills": "Removed in v0.1.1 after promoting the three starter stubs into skills[]. New drafts land via PR directly into skills/ + skills[] after editorial review (Notion internal).",
+    "promotion": "Draft \u2192 editorial review (Notion) \u2192 PR \u2192 skills[] with status published \u2192 optional Release tag / Manus feature."
+  }
+}
