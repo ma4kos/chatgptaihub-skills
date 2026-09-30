@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.2.0",
   "name": "chatgptaihub-free-skills-marketplace",
   "description": "Curated free SMB ChatGPT/Codex-ready SKILL.md packs with editorial trust. Not a scraper index.",
   "homepage": "https://chatgptaihub.com",
@@ -18,7 +18,7 @@
       "chatgptaihub-webmaster"
     ]
   },
-  "license_placeholder": "MIT (D13) \u2014 LICENSE file TBD at public remote publish",
+  "license_placeholder": "MIT — see LICENSE",
   "categories": [
     {
       "id": "support",
@@ -60,12 +60,7 @@
       "path": "skills/meeting-notes-to-actions/SKILL.md",
       "version": "0.1.0",
       "status": "published",
-      "tags": [
-        "meetings",
-        "actions",
-        "smb",
-        "ops"
-      ],
+      "tags": ["meetings", "actions", "smb", "ops"],
       "requires_secrets": false,
       "env_placeholders": []
     },
@@ -77,17 +72,9 @@
       "path": "skills/customer-email-triage/SKILL.md",
       "version": "0.1.0",
       "status": "published",
-      "tags": [
-        "email",
-        "support",
-        "triage",
-        "smb"
-      ],
+      "tags": ["email", "support", "triage", "smb"],
       "requires_secrets": false,
-      "env_placeholders": [
-        "SUPPORT_TONE",
-        "SLA_HOURS_URGENT"
-      ]
+      "env_placeholders": ["SUPPORT_TONE", "SLA_HOURS_URGENT"]
     },
     {
       "slug": "weekly-ops-brief",
@@ -97,22 +84,51 @@
       "path": "skills/weekly-ops-brief/SKILL.md",
       "version": "0.1.0",
       "status": "published",
-      "tags": [
-        "ops",
-        "brief",
-        "weekly",
-        "smb"
-      ],
+      "tags": ["ops", "brief", "weekly", "smb"],
       "requires_secrets": false,
-      "env_placeholders": [
-        "OPS_BRIEF_TZ",
-        "OPS_BRIEF_AUDIENCE"
-      ]
+      "env_placeholders": ["OPS_BRIEF_TZ", "OPS_BRIEF_AUDIENCE"]
+    },
+    {
+      "slug": "outbound-email-draft",
+      "name": "Outbound Email Draft",
+      "description": "Draft a single SMB outbound sales email from prospect context with a clear CTA — no auto-send.",
+      "category": "sales",
+      "path": "skills/outbound-email-draft/SKILL.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "tags": ["sales", "outbound", "email", "smb"],
+      "requires_secrets": false,
+      "env_placeholders": ["SALES_SENDER_NAME", "SALES_SENDER_TITLE", "SALES_CTA_DEFAULT"]
+    },
+    {
+      "slug": "checklist-from-sop",
+      "name": "Checklist from SOP",
+      "description": "Turn a pasted SOP or runbook into a numbered operator checklist with owners and evidence fields.",
+      "category": "ops",
+      "path": "skills/checklist-from-sop/SKILL.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "tags": ["ops", "sop", "checklist", "smb"],
+      "requires_secrets": false,
+      "env_placeholders": ["SOP_DEFAULT_OWNER", "SOP_EVIDENCE_DIR"]
+    },
+    {
+      "slug": "linkedin-post-outline",
+      "name": "LinkedIn Post Outline",
+      "description": "Turn bullet talking points into a LinkedIn post outline with hook, body beats, and CTA — draft only.",
+      "category": "content",
+      "path": "skills/linkedin-post-outline/SKILL.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "tags": ["content", "linkedin", "outline", "smb"],
+      "requires_secrets": false,
+      "env_placeholders": ["CONTENT_BRAND_VOICE", "CONTENT_CTA_URL_LABEL"]
     }
   ],
   "schema_notes": {
     "skills": "Production catalog listings. Each entry must have slug, name, description, category, path, version, status, tags, requires_secrets, env_placeholders; path must resolve to an existing SKILL.md.",
     "example_skills": "Removed in v0.1.1 after promoting the three starter stubs into skills[]. New drafts land via PR directly into skills/ + skills[] after editorial review (Notion internal).",
-    "promotion": "Draft \u2192 editorial review (Notion) \u2192 PR \u2192 skills[] with status published \u2192 optional Release tag / Manus feature."
+    "promotion": "Draft → editorial review (Notion) → PR → skills[] with status published → optional Release tag / Manus feature.",
+    "p1": "P1 sales/ops/content drafts added in v0.2.0: outbound-email-draft, checklist-from-sop, linkedin-post-outline."
   }
 }
