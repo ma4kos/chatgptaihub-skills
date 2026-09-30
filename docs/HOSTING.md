@@ -42,3 +42,10 @@ Positioning: curated free SMB packs + editorial trust — **not** a million-skil
 
 - Template-generator side path: [`TEMPLATE_GENERATOR.md`](./TEMPLATE_GENERATOR.md)
 - Decisions log: [`../CATALOG_DECISIONS.md`](../CATALOG_DECISIONS.md)
+
+## Pages enable (2026-09-30)
+
+1. Prefer **GitHub Actions** via `.github/workflows/pages.yml` (deploys `docs/` after copying `marketplace.json` + featured pin).
+2. Repo **Settings → Pages → Source = GitHub Actions**.
+3. Expected URL: `https://ma4kos.github.io/chatgptaihub-skills/`
+4. Alternate: branch `main` / folder `/docs` without Actions (then keep `docs/marketplace.json` in sync manually).
