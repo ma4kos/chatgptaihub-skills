@@ -56,7 +56,7 @@ Prioritized free skills to build after the three example stubs. Signals summariz
 ## Build order recommendation
 
 1. ~~Graduate the three stubs~~ **Done (polish 2026-09-30):** `meeting-notes-to-actions`, `customer-email-triage`, `weekly-ops-brief` are in `skills[]` with `status: published`.
-2. Add P1 writing/sales/ops five.
+2. ~~Add P1 writing/sales/ops~~ **Partial (2026-09-30):** drafts `outbound-email-draft` (sales), `checklist-from-sop` (ops), `linkedin-post-outline` (content) in `skills[]` with `status: draft`. Remaining P1 from table above still queued.
 3. Add P2 agent/coding four.
 4. Add P3 finance only with heavy disclaimer + no live credentials.
 
