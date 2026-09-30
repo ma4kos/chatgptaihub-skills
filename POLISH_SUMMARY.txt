@@ -1,0 +1,44 @@
+ChatGPTAIHub Free Skills Marketplace — POLISH SUMMARY
+Generated: 2026-09-30 (Indian/Mauritius, UTC+4)
+Root: /workspace/chatgptaihub_skills_marketplace/
+
+WHAT CHANGED
+  Promoted the three starter stubs into marketplace.json skills[] (status published).
+  Removed example_skills to eliminate redundancy.
+  Trimmed SKILL.md env sections: names-only placeholders; meeting-notes needs none.
+  Added scripts/validate_catalog.py (path + required-field checks).
+  Added templates/skill-template/SKILL.md from docs/TEMPLATE_GENERATOR.md guidance.
+  README spine note: Hub webmaster = private ops in ma4kos/markos-spine — not this catalog.
+  Supporting doc sync: CATALOG_DECISIONS D7, SUBMIT, HOSTING, STARTER_SET_PRIORITY.
+
+FILES CHANGED / CREATED
+  /workspace/chatgptaihub_skills_marketplace/marketplace.json
+  /workspace/chatgptaihub_skills_marketplace/README.md
+  /workspace/chatgptaihub_skills_marketplace/CATALOG_DECISIONS.md
+  /workspace/chatgptaihub_skills_marketplace/POLISH_SUMMARY.txt          (new)
+  /workspace/chatgptaihub_skills_marketplace/skills/meeting-notes-to-actions/SKILL.md
+  /workspace/chatgptaihub_skills_marketplace/skills/customer-email-triage/SKILL.md
+  /workspace/chatgptaihub_skills_marketplace/skills/weekly-ops-brief/SKILL.md
+  /workspace/chatgptaihub_skills_marketplace/scripts/validate_catalog.py (new)
+  /workspace/chatgptaihub_skills_marketplace/templates/skill-template/SKILL.md (new)
+  /workspace/chatgptaihub_skills_marketplace/docs/SUBMIT.md
+  /workspace/chatgptaihub_skills_marketplace/docs/HOSTING.md
+  /workspace/chatgptaihub_skills_marketplace/docs/STARTER_SET_PRIORITY.md
+
+marketplace.json NOTES
+  version: 0.1.1
+  skills: 3 published entries (meeting-notes-to-actions, customer-email-triage, weekly-ops-brief)
+  example_skills: removed
+  env_placeholders: [] | SUPPORT_TONE,SLA_HOURS_URGENT | OPS_BRIEF_TZ,OPS_BRIEF_AUDIENCE
+  not_public_catalog includes chatgptaihub-webmaster
+  license_placeholder: MIT (D13) — LICENSE file TBD at public remote publish
+
+VALIDATE
+  python3 scripts/validate_catalog.py → OK (3 skills, paths exist, fields present)
+
+STOPPED SHORT OF
+  Creating a GitHub remote (explicitly out of scope)
+  Cap FIRE content
+  Real secrets / live API keys
+  Publishing or mirroring ma4kos/markos-spine Hub webmaster skill
+  Cutting a GitHub Release / Pages deploy

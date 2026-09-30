@@ -1,0 +1,56 @@
+ChatGPTAIHub Free Skills Marketplace — SCAFFOLD SUMMARY
+Generated: 2026-09-30 (Indian/Mauritius, UTC+4)
+Root: /workspace/chatgptaihub_skills_marketplace/
+
+PURPOSE
+  Lean PUBLIC catalog scaffold: curated free SMB ChatGPT/Codex SKILL.md packs.
+  Host: GitHub (README + Pages + Releases + marketplace.json).
+  Editorial: Notion only. VPC dashboard is NOT the public catalog.
+  Not a scraper index. No secret-bound estate/spine duplication.
+  Spine NOW READABLE: ma4kos/markos-spine (private; GitHub MCP). Hub skill
+  chatgptaihub-webmaster = private-ops-only — do not publish to free catalog.
+  No Cap FIRE. No real secrets.
+
+FILES CREATED / WRITTEN
+  /workspace/chatgptaihub_skills_marketplace/README.md
+  /workspace/chatgptaihub_skills_marketplace/marketplace.json
+  /workspace/chatgptaihub_skills_marketplace/CATALOG_DECISIONS.md
+  /workspace/chatgptaihub_skills_marketplace/SCAFFOLD_SUMMARY.txt
+  /workspace/chatgptaihub_skills_marketplace/skills/meeting-notes-to-actions/SKILL.md
+  /workspace/chatgptaihub_skills_marketplace/skills/customer-email-triage/SKILL.md
+  /workspace/chatgptaihub_skills_marketplace/skills/weekly-ops-brief/SKILL.md
+  /workspace/chatgptaihub_skills_marketplace/docs/QUALITY_BAR.md
+  /workspace/chatgptaihub_skills_marketplace/docs/SUBMIT.md
+  /workspace/chatgptaihub_skills_marketplace/docs/HOSTING.md
+  /workspace/chatgptaihub_skills_marketplace/docs/TEMPLATE_GENERATOR.md
+  /workspace/chatgptaihub_skills_marketplace/docs/STARTER_SET_PRIORITY.md
+
+PRE-EXISTING DIRS (left in place; may be empty)
+  catalog/
+  scripts/
+  templates/
+  skills/  (populated with 3 stub folders)
+  docs/    (populated)
+
+marketplace.json NOTES
+  version: 0.1.0
+  categories: support, sales, ops, finance, content, coding-assistant
+  skills: [] (empty production array)
+  example_skills: 3 metadata stubs pointing at SKILL.md paths
+
+HARD-CODED DECISIONS
+  See CATALOG_DECISIONS.md (D1–D12). Spine access RESOLVED (Q1 reframed to
+  de-dupe process). Still open: MailPoet metrics (Q2), license MIT/CC-BY (Q3).
+
+STOPPED SHORT OF
+  Real GitHub remote/Pages deploy
+  Notion wiring
+  MailPoet metrics integration
+  Promoting example stubs into skills[]
+  Any Cap FIRE content
+  Any real API keys or private spine files
+
+UPDATE 2026-09-30 (synthesis pass)
+  Spine readable: ma4kos/markos-spine. Hub webmaster = private-ops-only.
+  See /workspace/skills_marketplace_research_20260930/02b_spine_access_reconcile.md
+  and 04_SYNTHESIS.md.
