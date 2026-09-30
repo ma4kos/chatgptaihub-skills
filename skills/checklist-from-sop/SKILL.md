@@ -3,7 +3,7 @@ name: checklist-from-sop
 description: Turn a pasted SOP or runbook into a numbered operator checklist with owners and evidence fields.
 category: ops
 version: 0.1.0
-status: draft
+status: published
 ---
 
 # Checklist from SOP

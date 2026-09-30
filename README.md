@@ -55,13 +55,20 @@ python3 scripts/validate_catalog.py
 
 ---
 
-## Starter skills (published)
+## Published skills
 
 | Slug | Category | Env placeholders |
 |------|----------|------------------|
 | `meeting-notes-to-actions` | ops | none |
 | `customer-email-triage` | support | `SUPPORT_TONE`, `SLA_HOURS_URGENT` (optional) |
 | `weekly-ops-brief` | ops | `OPS_BRIEF_TZ`, `OPS_BRIEF_AUDIENCE` (optional) |
+| `outbound-email-draft` | sales | `SALES_SENDER_NAME`, `SALES_SENDER_TITLE`, `SALES_CTA_DEFAULT` (optional) |
+| `checklist-from-sop` | ops | `SOP_DEFAULT_OWNER`, `SOP_EVIDENCE_DIR` (optional) |
+| `proposal-outline-smb` | sales | `PROPOSAL_CURRENCY`, `PROPOSAL_CONTACT` (optional) |
+| `sop-from-bullets` | ops | `SOP_OWNER`, `SOP_REVIEW_INTERVAL` (optional) |
+| `support-macro-library` | support | `SUPPORT_BRAND_VOICE`, `SUPPORT_ESCALATION_CHANNEL` (optional) |
+| `content-brief-to-draft` | content | `CONTENT_BRAND_VOICE`, `CONTENT_REVIEWER` (optional) |
+| `pipeline-weekly-rollup` | sales | `PIPELINE_CURRENCY`, `PIPELINE_OWNER` (optional) |
 
 ## P1 drafts (sales / ops / content)
 
@@ -70,8 +77,17 @@ python3 scripts/validate_catalog.py
 | `outbound-email-draft` | sales | draft | `SALES_SENDER_NAME`, `SALES_SENDER_TITLE`, `SALES_CTA_DEFAULT` (optional) |
 | `checklist-from-sop` | ops | draft | `SOP_DEFAULT_OWNER`, `SOP_EVIDENCE_DIR` (optional) |
 | `linkedin-post-outline` | content | draft | `CONTENT_BRAND_VOICE`, `CONTENT_CTA_URL_LABEL` (optional) |
+| `agent-handoff-checklist` | ops | draft | `HANDOFF_OWNER`, `HANDOFF_CHANNEL` (optional) |
+| `codex-pr-summary` | coding-assistant | draft | `REPO_NAME`, `PR_REVIEWER` (optional) |
+| `bug-repro-steps` | coding-assistant | draft | `BUG_ENVIRONMENT`, `BUG_PRIORITY` (optional) |
 
 ---
+
+## Content packs
+
+The launch catalog groups these skills into `ops-engine-starter`, `support-essentials`,
+`sales-accelerator`, `content-creation-kit`, and `developer-assistant`. Each pack has a
+README and a safe dry-run walkthrough under [`packs/`](./packs/).
 
 
 ## GitHub Pages (catalog browse)

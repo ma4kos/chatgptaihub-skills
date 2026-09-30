@@ -18,7 +18,7 @@ import json
 import sys
 from pathlib import Path
 
-REQUIRED_TOP_LEVEL = ("version", "name", "description", "categories", "skills")
+REQUIRED_TOP_LEVEL = ("version", "name", "description", "categories", "skills", "content_packs")
 REQUIRED_SKILL_FIELDS = (
     "slug",
     "name",
@@ -70,6 +70,43 @@ def validate(root: Path, data: dict) -> list[str]:
     if not isinstance(skills, list):
         errors.append("skills must be an array")
         return errors
+
+    packs = data.get("content_packs")
+    if not isinstance(packs, list):
+        errors.append("content_packs must be an array")
+    else:
+        seen_pack_ids: set[str] = set()
+        skill_slugs = {skill.get("slug") for skill in skills if isinstance(skill, dict)}
+        for i, pack in enumerate(packs):
+            prefix = f"content_packs[{i}]"
+            if not isinstance(pack, dict):
+                errors.append(f"{prefix}: must be an object")
+                continue
+            for field in ("id", "name", "description", "skills", "path"):
+                if field not in pack:
+                    errors.append(f"{prefix}: missing required field '{field}'")
+            pack_id = pack.get("id")
+            if not isinstance(pack_id, str) or not pack_id:
+                errors.append(f"{prefix}: id must be a non-empty string")
+            elif pack_id in seen_pack_ids:
+                errors.append(f"{prefix}: duplicate id '{pack_id}'")
+            else:
+                seen_pack_ids.add(pack_id)
+            pack_skills = pack.get("skills")
+            if not isinstance(pack_skills, list) or not pack_skills:
+                errors.append(f"{prefix}: skills must be a non-empty array")
+            else:
+                for j, slug in enumerate(pack_skills):
+                    if not isinstance(slug, str) or slug not in skill_slugs:
+                        errors.append(f"{prefix}.skills[{j}]: unknown skill slug '{slug}'")
+            pack_path = pack.get("path")
+            if isinstance(pack_path, str):
+                if not (root / pack_path).is_file():
+                    errors.append(f"{prefix}: path does not exist: {pack_path}")
+                elif (root / pack_path).name != "README.md":
+                    errors.append(f"{prefix}: path should end with README.md, got {pack_path}")
+            elif pack_path is not None:
+                errors.append(f"{prefix}: path must be a string")
 
     if "example_skills" in data and data["example_skills"]:
         errors.append(

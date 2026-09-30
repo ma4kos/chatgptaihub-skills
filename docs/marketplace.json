@@ -1,35 +1,388 @@
 {
-  "version": "0.2.0",
+  "version": "0.4.0-launch-mass",
   "name": "chatgptaihub-free-skills-marketplace",
   "description": "Curated free SMB ChatGPT/Codex-ready SKILL.md packs with editorial trust. Not a scraper index.",
   "homepage": "https://chatgptaihub.com",
   "hosting": {
     "primary": "github",
-    "surfaces": ["readme", "pages", "releases", "marketplace.json"],
+    "surfaces": [
+      "readme",
+      "pages",
+      "releases",
+      "marketplace.json"
+    ],
     "editorial": "notion-internal-only",
-    "not_public_catalog": ["vpc-dashboard", "secret-bound-estate-skills", "chatgptaihub-webmaster"]
+    "not_public_catalog": [
+      "vpc-dashboard",
+      "secret-bound-estate-skills",
+      "chatgptaihub-webmaster"
+    ]
   },
   "license_placeholder": "MIT — see LICENSE",
   "categories": [
-    {"id": "support", "label": "Support", "description": "Customer triage, reply drafts, escalation hygiene"},
-    {"id": "sales", "label": "Sales", "description": "Outreach, CRM notes, pipeline briefs"},
-    {"id": "ops", "label": "Ops", "description": "Meetings to actions, weekly briefs, operational checklists"},
-    {"id": "finance", "label": "Finance", "description": "Invoice and expense summaries without live credentials"},
-    {"id": "content", "label": "Content", "description": "Drafts, outlines, editorial checklists"},
-    {"id": "coding-assistant", "label": "Coding assistant", "description": "Repo hygiene and Codex-oriented helpers"}
+    {
+      "id": "support",
+      "label": "Support",
+      "description": "Customer triage, reply drafts, escalation hygiene"
+    },
+    {
+      "id": "sales",
+      "label": "Sales",
+      "description": "Outreach, CRM notes, pipeline briefs"
+    },
+    {
+      "id": "ops",
+      "label": "Ops",
+      "description": "Meetings to actions, weekly briefs, operational checklists"
+    },
+    {
+      "id": "finance",
+      "label": "Finance",
+      "description": "Invoice and expense summaries without live credentials"
+    },
+    {
+      "id": "content",
+      "label": "Content",
+      "description": "Drafts, outlines, editorial checklists"
+    },
+    {
+      "id": "coding-assistant",
+      "label": "Coding assistant",
+      "description": "Repo hygiene and Codex-oriented helpers"
+    }
   ],
   "skills": [
-    {"slug": "meeting-notes-to-actions", "name": "Meeting Notes to Actions", "description": "Turn raw meeting notes into owners, due dates, and a follow-up checklist.", "category": "ops", "path": "skills/meeting-notes-to-actions/SKILL.md", "version": "0.1.0", "status": "published", "tags": ["meetings", "actions", "smb", "ops"], "requires_secrets": false, "env_placeholders": []},
-    {"slug": "customer-email-triage", "name": "Customer Email Triage", "description": "Classify inbound customer email into priority buckets with draft reply outlines.", "category": "support", "path": "skills/customer-email-triage/SKILL.md", "version": "0.1.0", "status": "published", "tags": ["email", "support", "triage", "smb"], "requires_secrets": false, "env_placeholders": ["SUPPORT_TONE", "SLA_HOURS_URGENT"]},
-    {"slug": "weekly-ops-brief", "name": "Weekly Ops Brief", "description": "Assemble a one-page weekly operations brief from bullet inputs.", "category": "ops", "path": "skills/weekly-ops-brief/SKILL.md", "version": "0.1.0", "status": "published", "tags": ["ops", "brief", "weekly", "smb"], "requires_secrets": false, "env_placeholders": ["OPS_BRIEF_TZ", "OPS_BRIEF_AUDIENCE"]},
-    {"slug": "outbound-email-draft", "name": "Outbound Email Draft", "description": "Draft a single SMB outbound sales email from prospect context with a clear CTA — no auto-send.", "category": "sales", "path": "skills/outbound-email-draft/SKILL.md", "version": "0.1.0", "status": "draft", "tags": ["sales", "outbound", "email", "smb"], "requires_secrets": false, "env_placeholders": ["SALES_SENDER_NAME", "SALES_SENDER_TITLE", "SALES_CTA_DEFAULT"]},
-    {"slug": "checklist-from-sop", "name": "Checklist from SOP", "description": "Turn a pasted SOP or runbook into a numbered operator checklist with owners and evidence fields.", "category": "ops", "path": "skills/checklist-from-sop/SKILL.md", "version": "0.1.0", "status": "draft", "tags": ["ops", "sop", "checklist", "smb"], "requires_secrets": false, "env_placeholders": ["SOP_DEFAULT_OWNER", "SOP_EVIDENCE_DIR"]},
-    {"slug": "linkedin-post-outline", "name": "LinkedIn Post Outline", "description": "Turn bullet talking points into a LinkedIn post outline with hook, body beats, and CTA — draft only.", "category": "content", "path": "skills/linkedin-post-outline/SKILL.md", "version": "0.1.0", "status": "draft", "tags": ["content", "linkedin", "outline", "smb"], "requires_secrets": false, "env_placeholders": ["CONTENT_BRAND_VOICE", "CONTENT_CTA_URL_LABEL"]}
+    {
+      "slug": "meeting-notes-to-actions",
+      "name": "Meeting Notes to Actions",
+      "description": "Turn raw meeting notes into owners, due dates, and a follow-up checklist.",
+      "category": "ops",
+      "path": "skills/meeting-notes-to-actions/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "meetings",
+        "actions",
+        "smb",
+        "ops"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": []
+    },
+    {
+      "slug": "customer-email-triage",
+      "name": "Customer Email Triage",
+      "description": "Classify inbound customer email into priority buckets with draft reply outlines.",
+      "category": "support",
+      "path": "skills/customer-email-triage/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "email",
+        "support",
+        "triage",
+        "smb"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "SUPPORT_TONE",
+        "SLA_HOURS_URGENT"
+      ]
+    },
+    {
+      "slug": "weekly-ops-brief",
+      "name": "Weekly Ops Brief",
+      "description": "Assemble a one-page weekly operations brief from bullet inputs.",
+      "category": "ops",
+      "path": "skills/weekly-ops-brief/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "ops",
+        "brief",
+        "weekly",
+        "smb"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "OPS_BRIEF_TZ",
+        "OPS_BRIEF_AUDIENCE"
+      ]
+    },
+    {
+      "slug": "outbound-email-draft",
+      "name": "Outbound Email Draft",
+      "description": "Draft a single SMB outbound sales email from prospect context with a clear CTA — no auto-send.",
+      "category": "sales",
+      "path": "skills/outbound-email-draft/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "sales",
+        "outbound",
+        "email",
+        "smb"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "SALES_SENDER_NAME",
+        "SALES_SENDER_TITLE",
+        "SALES_CTA_DEFAULT"
+      ]
+    },
+    {
+      "slug": "checklist-from-sop",
+      "name": "Checklist from SOP",
+      "description": "Turn a pasted SOP or runbook into a numbered operator checklist with owners and evidence fields.",
+      "category": "ops",
+      "path": "skills/checklist-from-sop/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "ops",
+        "sop",
+        "checklist",
+        "smb"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "SOP_DEFAULT_OWNER",
+        "SOP_EVIDENCE_DIR"
+      ]
+    },
+    {
+      "slug": "proposal-outline-smb",
+      "name": "Proposal Outline SMB",
+      "description": "Turn discovery notes into a concise SMB proposal outline with assumptions and next steps.",
+      "category": "sales",
+      "path": "skills/proposal-outline-smb/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "sales",
+        "proposal",
+        "smb"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "PROPOSAL_CURRENCY",
+        "PROPOSAL_CONTACT"
+      ]
+    },
+    {
+      "slug": "sop-from-bullets",
+      "name": "SOP from Bullets",
+      "description": "Turn tribal-knowledge bullets into a reviewable standard operating procedure.",
+      "category": "ops",
+      "path": "skills/sop-from-bullets/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "ops",
+        "sop",
+        "documentation"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "SOP_OWNER",
+        "SOP_REVIEW_INTERVAL"
+      ]
+    },
+    {
+      "slug": "support-macro-library",
+      "name": "Support Macro Library",
+      "description": "Create reusable, human-reviewed support reply macros from pasted ticket examples.",
+      "category": "support",
+      "path": "skills/support-macro-library/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "support",
+        "macros",
+        "customer-service"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "SUPPORT_BRAND_VOICE",
+        "SUPPORT_ESCALATION_CHANNEL"
+      ]
+    },
+    {
+      "slug": "content-brief-to-draft",
+      "name": "Content Brief to Draft",
+      "description": "Turn a content brief into a structured draft while preserving audience, claims, and review gates.",
+      "category": "content",
+      "path": "skills/content-brief-to-draft/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "content",
+        "brief",
+        "drafting"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "CONTENT_BRAND_VOICE",
+        "CONTENT_REVIEWER"
+      ]
+    },
+    {
+      "slug": "pipeline-weekly-rollup",
+      "name": "Pipeline Weekly Rollup",
+      "description": "Summarize pasted pipeline rows into stage movement, risks, and next actions.",
+      "category": "sales",
+      "path": "skills/pipeline-weekly-rollup/SKILL.md",
+      "version": "0.1.0",
+      "status": "published",
+      "tags": [
+        "sales",
+        "pipeline",
+        "weekly"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "PIPELINE_CURRENCY",
+        "PIPELINE_OWNER"
+      ]
+    },
+    {
+      "slug": "linkedin-post-outline",
+      "name": "LinkedIn Post Outline",
+      "description": "Turn bullet talking points into a LinkedIn post outline with hook, body beats, and CTA — draft only.",
+      "category": "content",
+      "path": "skills/linkedin-post-outline/SKILL.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "tags": [
+        "content",
+        "linkedin",
+        "outline",
+        "smb"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "CONTENT_BRAND_VOICE",
+        "CONTENT_CTA_URL_LABEL"
+      ]
+    },
+    {
+      "slug": "agent-handoff-checklist",
+      "name": "Agent Handoff Checklist",
+      "description": "Prepare a deterministic handoff between an agent and a human with context, decisions, and next actions.",
+      "category": "ops",
+      "path": "skills/agent-handoff-checklist/SKILL.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "tags": [
+        "agents",
+        "handoff",
+        "checklist"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "HANDOFF_OWNER",
+        "HANDOFF_CHANNEL"
+      ]
+    },
+    {
+      "slug": "codex-pr-summary",
+      "name": "Codex PR Summary",
+      "description": "Turn a pasted diff and test notes into a concise pull-request summary and review checklist.",
+      "category": "coding-assistant",
+      "path": "skills/codex-pr-summary/SKILL.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "tags": [
+        "coding",
+        "codex",
+        "pull-request"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "REPO_NAME",
+        "PR_REVIEWER"
+      ]
+    },
+    {
+      "slug": "bug-repro-steps",
+      "name": "Bug Repro Steps",
+      "description": "Turn an issue report into deterministic reproduction steps, expected behavior, and evidence requests.",
+      "category": "coding-assistant",
+      "path": "skills/bug-repro-steps/SKILL.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "tags": [
+        "coding",
+        "bugs",
+        "reproduction"
+      ],
+      "requires_secrets": false,
+      "env_placeholders": [
+        "BUG_ENVIRONMENT",
+        "BUG_PRIORITY"
+      ]
+    }
+  ],
+  "content_packs": [
+    {
+      "id": "ops-engine-starter",
+      "name": "Ops Engine Starter",
+      "description": "Meeting, weekly brief, SOP, and checklist workflows for small teams.",
+      "skills": [
+        "meeting-notes-to-actions",
+        "weekly-ops-brief",
+        "sop-from-bullets",
+        "checklist-from-sop"
+      ],
+      "path": "packs/ops-engine-starter/README.md"
+    },
+    {
+      "id": "support-essentials",
+      "name": "Support Essentials",
+      "description": "Triage and reusable support macros without live helpdesk credentials.",
+      "skills": [
+        "customer-email-triage",
+        "support-macro-library",
+        "agent-handoff-checklist"
+      ],
+      "path": "packs/support-essentials/README.md"
+    },
+    {
+      "id": "sales-accelerator",
+      "name": "Sales Accelerator",
+      "description": "Outbound, proposal, and pipeline workflows without auto-send or CRM lock-in.",
+      "skills": [
+        "outbound-email-draft",
+        "proposal-outline-smb",
+        "pipeline-weekly-rollup"
+      ],
+      "path": "packs/sales-accelerator/README.md"
+    },
+    {
+      "id": "content-creation-kit",
+      "name": "Content Creation Kit",
+      "description": "Brief-to-draft and social outline workflows for SMB content teams.",
+      "skills": [
+        "content-brief-to-draft",
+        "linkedin-post-outline"
+      ],
+      "path": "packs/content-creation-kit/README.md"
+    },
+    {
+      "id": "developer-assistant",
+      "name": "Developer Assistant",
+      "description": "Human-reviewed handoffs, pull-request summaries, and bug reproduction notes.",
+      "skills": [
+        "agent-handoff-checklist",
+        "codex-pr-summary",
+        "bug-repro-steps"
+      ],
+      "path": "packs/developer-assistant/README.md"
+    }
   ],
   "schema_notes": {
     "skills": "Production catalog listings. Each entry must have slug, name, description, category, path, version, status, tags, requires_secrets, env_placeholders; path must resolve to an existing SKILL.md.",
-    "example_skills": "Removed in v0.1.1 after promoting the three starter stubs into skills[]. New drafts land via PR directly into skills/ + skills[] after editorial review (Notion internal).",
-    "promotion": "Draft → editorial review (Notion) → PR → skills[] with status published → optional Release tag / Manus feature.",
-    "p1": "P1 sales/ops/content drafts added in v0.2.0: outbound-email-draft, checklist-from-sop, linkedin-post-outline."
+    "content_packs": "Curated bundles reference skill slugs and a pack README; no pack embeds secrets or private integrations.",
+    "promotion": "Draft → editorial review → PR → skills[] with status published."
   }
 }

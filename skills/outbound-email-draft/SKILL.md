@@ -3,7 +3,7 @@ name: outbound-email-draft
 description: Draft a single SMB outbound sales email from prospect context with a clear CTA — no auto-send.
 category: sales
 version: 0.1.0
-status: draft
+status: published
 ---
 
 # Outbound Email Draft
