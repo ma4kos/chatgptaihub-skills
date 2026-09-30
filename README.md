@@ -63,7 +63,28 @@ python3 scripts/validate_catalog.py
 | `customer-email-triage` | support | `SUPPORT_TONE`, `SLA_HOURS_URGENT` (optional) |
 | `weekly-ops-brief` | ops | `OPS_BRIEF_TZ`, `OPS_BRIEF_AUDIENCE` (optional) |
 
+## P1 drafts (sales / ops / content)
+
+| Slug | Category | Status | Env placeholders |
+|------|----------|--------|------------------|
+| `outbound-email-draft` | sales | draft | `SALES_SENDER_NAME`, `SALES_SENDER_TITLE`, `SALES_CTA_DEFAULT` (optional) |
+| `checklist-from-sop` | ops | draft | `SOP_DEFAULT_OWNER`, `SOP_EVIDENCE_DIR` (optional) |
+| `linkedin-post-outline` | content | draft | `CONTENT_BRAND_VOICE`, `CONTENT_CTA_URL_LABEL` (optional) |
+
 ---
+
+
+## GitHub Pages (catalog browse)
+
+Static browse of the catalog ships from the `docs/` folder:
+
+- Site entry: [`docs/index.html`](./docs/index.html) (loads `docs/marketplace.json` + featured pin)
+- Workflow: [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) — on push to `main`, validates the catalog, copies `marketplace.json` / `catalog/featured.json` into `docs/`, deploys Pages
+- Featured pin: [`catalog/featured.json`](./catalog/featured.json) — see [`docs/FEATURED_SKILL.md`](./docs/FEATURED_SKILL.md)
+
+**Enable Pages (one-time):** Repo **Settings → Pages → Build and deployment → Source = GitHub Actions** (preferred). After the first green `Deploy GitHub Pages` run, the site is at `https://ma4kos.github.io/chatgptaihub-skills/`. Alternate: Source = Deploy from a branch → `main` → `/docs`.
+
+No secrets in the Pages artifact. Do not put `.env` values or private spine skills here.
 
 ## Quality bar (summary)
 
@@ -97,13 +118,13 @@ Author template: [`templates/skill-template/SKILL.md`](./templates/skill-templat
 
 ## License
 
-**Default (D13 / fusion):** free catalog packs are intended to ship under **MIT**. README/`LICENSE` file will be finalized when the public remote is published. Until a `LICENSE` file lands, treat published packs as curated scaffolding under the planned MIT posture — still no warranty.
+**Default (D13 / fusion F7):** free catalog packs ship under **MIT** — see [`LICENSE`](./LICENSE). No warranty.
 
 ---
 
 ## Manus daily featured skill
 
-ChatGPTAIHub highlights one free catalog skill per day via Manus (and the site). Featured picks rotate through the curated set; they do not expand the quality bar. Check [chatgptaihub.com](https://chatgptaihub.com) for today’s skill.
+ChatGPTAIHub highlights one free catalog skill per day via Manus (and the site). Featured picks rotate through the curated set; they do not expand the quality bar. Machine pin: [`catalog/featured.json`](./catalog/featured.json). Process: [`docs/FEATURED_SKILL.md`](./docs/FEATURED_SKILL.md). Check [chatgptaihub.com](https://chatgptaihub.com) for today’s skill. Throttle LinkedIn Company Page auto-posts.
 
 ---
 
@@ -111,10 +132,12 @@ ChatGPTAIHub highlights one free catalog skill per day via Manus (and the site).
 
 ```
 marketplace.json                 # machine-readable catalog (skills[])
+catalog/featured.json            # Manus daily Featured Skill pin
 skills/<slug>/SKILL.md           # skill packs
 scripts/validate_catalog.py      # path + required-field checks
 templates/skill-template/        # blank SKILL.md for authors
-docs/                            # quality, submit, hosting, templates, starter priority
+docs/                            # Pages site + quality/submit/hosting/featured
+.github/workflows/pages.yml      # GitHub Pages deploy from docs/
 CATALOG_DECISIONS.md             # design decisions + open questions
 SCAFFOLD_SUMMARY.txt             # initial scaffold inventory
 POLISH_SUMMARY.txt               # polish-pass file list
