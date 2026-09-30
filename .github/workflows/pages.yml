@@ -1,0 +1,55 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Stage docs site
+        run: |
+          set -euo pipefail
+          cp marketplace.json docs/marketplace.json
+          mkdir -p docs/catalog
+          if [ -f catalog/featured.json ]; then
+            cp catalog/featured.json docs/featured.json
+            cp catalog/featured.json docs/catalog/featured.json
+          fi
+          # Sanity: index + catalog present
+          test -f docs/index.html
+          test -f docs/marketplace.json
+          python3 scripts/validate_catalog.py
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
