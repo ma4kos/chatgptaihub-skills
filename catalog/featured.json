@@ -1,7 +1,7 @@
 {
   "skill_slug": "meeting-notes-to-actions",
   "featured_date": "2026-09-30",
-  "git_sha": "PLACEHOLDER_UPDATE_AFTER_PUSH",
+  "git_sha": "01400eb34d7f4092750980e52c58128d9400188f",
   "release_tag": null,
   "manus_notes": "Launch-week stub: pin first published starter (meeting-notes-to-actions). Manus rotates daily; update this file + optional Release tag. Throttle LinkedIn Company Page auto-posts.",
   "schema_notes": "Fields: skill_slug (must exist in marketplace.json skills[]), featured_date (YYYY-MM-DD Mauritius/local editorial day), git_sha (full commit pin), release_tag (optional), manus_notes (short editorial)."
