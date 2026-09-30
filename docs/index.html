@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ChatGPTAIHub Free Skills Marketplace</title>
+  <meta name="description" content="Curated free SMB ChatGPT/Codex SKILL.md packs — not a scraper index." />
+  <style>
+    :root { color-scheme: light dark; --bg: #0f1419; --fg: #e7ecf1; --muted: #9aa7b5; --card: #1a222c; --accent: #6cb6ff; --border: #2a3542; }
+    @media (prefers-color-scheme: light) {
+      :root { --bg: #f6f8fa; --fg: #1f2328; --muted: #656d76; --card: #fff; --accent: #0969da; --border: #d0d7de; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.5; }
+    header, main, footer { max-width: 880px; margin: 0 auto; padding: 1.25rem 1rem; }
+    header h1 { margin: 0 0 0.25rem; font-size: 1.5rem; }
+    header p { margin: 0; color: var(--muted); }
+    .links { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    a { color: var(--accent); }
+    .meta { color: var(--muted); font-size: 0.9rem; margin: 1rem 0; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; margin: 0.75rem 0; }
+    .card h2 { margin: 0 0 0.35rem; font-size: 1.1rem; }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
+    .badge { font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+    .badge.status-published { border-color: #3fb950; color: #3fb950; }
+    .badge.status-draft { border-color: #d29922; color: #d29922; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85em; }
+    .err { color: #f85149; }
+    footer { color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ChatGPTAIHub Free Skills</h1>
+    <p>Curated SMB <code>SKILL.md</code> packs for ChatGPT / Codex — editorial trust, not a mega-scraper.</p>
+    <div class="links">
+      <a href="https://github.com/ma4kos/chatgptaihub-skills">GitHub repo</a>
+      <a href="https://chatgptaihub.com">chatgptaihub.com</a>
+      <a href="./marketplace.json">marketplace.json</a>
+      <a href="./FEATURED_SKILL.md">Featured Skill</a>
+      <a href="./QUALITY_BAR.md">Quality bar</a>
+      <a href="./SUBMIT.md">Submit</a>
+    </div>
+  </header>
+  <main>
+    <p class="meta" id="meta">Loading catalog…</p>
+    <div id="featured"></div>
+    <div id="skills"></div>
+  </main>
+  <footer>
+    <p>MIT-intended free packs. No secrets in catalog. Private spine / webmaster skills are out of scope.</p>
+    <p>Enable Pages: Repo Settings → Pages → Source = GitHub Actions (workflow <code>pages.yml</code>) or Deploy from branch <code>main</code> / folder <code>/docs</code>.</p>
+  </footer>
+  <script>
+    async function loadJson(path) {
+      const res = await fetch(path, { cache: "no-store" });
+      if (!res.ok) throw new Error(path + " HTTP " + res.status);
+      return res.json();
+    }
+    function el(tag, attrs, ...kids) {
+      const n = document.createElement(tag);
+      if (attrs) Object.entries(attrs).forEach(([k, v]) => {
+        if (k === "className") n.className = v;
+        else if (k === "text") n.textContent = v;
+        else n.setAttribute(k, v);
+      });
+      kids.forEach((c) => { if (c != null) n.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+      return n;
+    }
+    (async () => {
+      const meta = document.getElementById("meta");
+      const skillsRoot = document.getElementById("skills");
+      const featuredRoot = document.getElementById("featured");
+      try {
+        const [mp, featured] = await Promise.all([
+          loadJson("./marketplace.json"),
+          loadJson("../catalog/featured.json").catch(() => loadJson("./featured.json").catch(() => null)),
+        ]);
+        const skills = mp.skills || [];
+        meta.textContent = (mp.name || "catalog") + " v" + (mp.version || "?") + " — " + skills.length + " skill(s)";
+        if (featured && featured.skill_slug) {
+          featuredRoot.appendChild(el("div", { className: "card" },
+            el("h2", { text: "Featured Skill" }),
+            el("p", null, el("code", { text: featured.skill_slug }),
+              document.createTextNode(" · " + (featured.featured_date || "") +
+                (featured.git_sha ? " · pin " + String(featured.git_sha).slice(0, 7) : ""))),
+            featured.manus_notes ? el("p", { text: featured.manus_notes }) : null
+          ));
+        }
+        skills.forEach((s) => {
+          const card = el("div", { className: "card" });
+          card.appendChild(el("h2", { text: s.name || s.slug }));
+          card.appendChild(el("div", { className: "badges" },
+            el("span", { className: "badge status-" + (s.status || "draft"), text: s.status || "draft" }),
+            el("span", { className: "badge", text: s.category || "" }),
+            el("span", { className: "badge", text: "v" + (s.version || "") })
+          ));
+          card.appendChild(el("p", { text: s.description || "" }));
+          const path = s.path || ("skills/" + s.slug + "/SKILL.md");
+          card.appendChild(el("p", null,
+            el("a", { href: "https://github.com/ma4kos/chatgptaihub-skills/blob/main/" + path }, "View SKILL.md"),
+            document.createTextNode(" · "),
+            el("code", { text: s.slug })
+          ));
+          skillsRoot.appendChild(card);
+        });
+      } catch (e) {
+        meta.className = "meta err";
+        meta.textContent = "Failed to load catalog: " + e.message + ". Ensure docs/marketplace.json is present (workflow copies it from repo root).";
+      }
+    })();
+  </script>
+</body>
+</html>
