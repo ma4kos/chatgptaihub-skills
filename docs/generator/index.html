@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skill Template Generator (local draft) — ChatGPTAIHub</title>
+  <link rel="stylesheet" href="./generator.css" />
+</head>
+<body>
+  <header>
+    <h1>Skill Template Generator</h1>
+    <p>Client-side form → copyable draft <code>SKILL.md</code> (MIT). Never auto-publishes to the catalog. Pass QUALITY_BAR before any PR.</p>
+  </header>
+
+  <div class="banner" role="status">
+    <strong>Drafts only:</strong> Generated <code>SKILL.md</code> files are local MIT drafts — they never auto-publish to the catalog.
+    Pass <a href="../QUALITY_BAR.md">QUALITY_BAR</a> + a human PR before listing. Do not paste API keys or secret values into any field.
+  </div>
+
+  <div class="layout">
+    <section class="panel" aria-labelledby="form-title">
+      <h2 id="form-title">Inputs</h2>
+      <form id="tg-form" autocomplete="off">
+        <label for="skill_name">Skill name *</label>
+        <input id="skill_name" name="skill_name" type="text" maxlength="100" required placeholder="Harbor Close Checklist" />
+
+        <label for="skill_slug">Slug * <span class="hint">(auto from name; editable kebab-case)</span></label>
+        <input id="skill_slug" name="skill_slug" type="text" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="harbor-close-checklist" />
+
+        <label for="category">Category *</label>
+        <select id="category" name="category" required>
+          <option value="ops">ops</option>
+          <option value="support">support</option>
+          <option value="sales">sales</option>
+          <option value="finance">finance</option>
+          <option value="content">content</option>
+          <option value="coding-assistant">coding-assistant</option>
+        </select>
+
+        <label for="description">Description (one-line SMB outcome) *</label>
+        <input id="description" name="description" type="text" required placeholder="Turn closing bullets into a day-of checklist." />
+
+        <label for="goal">Purpose / goal *</label>
+        <textarea id="goal" name="goal" required placeholder="Produce a numbered checklist with stop conditions from pasted bullets."></textarea>
+
+        <label for="when_to_use">When to use * <span class="hint">(one per line; include a Not for line)</span></label>
+        <textarea id="when_to_use" name="when_to_use" required placeholder="End of shift closing&#10;Not for: alarm codes or POS passwords"></textarea>
+
+        <label for="inputs">Inputs * <span class="hint">(one per line; Name — format)</span></label>
+        <textarea id="inputs" name="inputs" required placeholder="Closing bullets — plain text&#10;Shift date — YYYY-MM-DD optional"></textarea>
+
+        <label for="instructions">Instructions * <span class="hint">(one step per line)</span></label>
+        <textarea id="instructions" name="instructions" required placeholder="Read bullets without inventing steps&#10;Normalize into numbered checklist&#10;Emit output; no send side effects"></textarea>
+
+        <label for="output_format">Output format * <span class="hint">(markdown shape)</span></label>
+        <textarea id="output_format" name="output_format" required placeholder="# Closing checklist&#10;&#10;| Step | Done |&#10;|------|------|&#10;| ... | [ ] |"></textarea>
+
+        <label for="out_of_scope">Out of scope * <span class="hint">(include no auto-send / no secrets)</span></label>
+        <textarea id="out_of_scope" name="out_of_scope" required placeholder="No auto-send of checklists&#10;No secrets in outputs"></textarea>
+
+        <label for="env_var_names">Env var names (optional) <span class="hint">(UPPER_SNAKE, one per line — names only)</span></label>
+        <textarea id="env_var_names" name="env_var_names" placeholder="SUPPORT_TONE"></textarea>
+
+        <div class="row">
+          <label class="inline"><input type="checkbox" id="include_setup_stubs" name="include_setup_stubs" /> Include setup-env / Codex stub panes</label>
+        </div>
+
+        <label for="dry_run_input">Dry-run input (should; fictional)</label>
+        <textarea id="dry_run_input" name="dry_run_input" placeholder="Wipe counters; lock patio; count tips"></textarea>
+
+        <label for="dry_run_expected">Dry-run expected shape (should; fictional)</label>
+        <textarea id="dry_run_expected" name="dry_run_expected" placeholder="Numbered checklist with UNASSIGNED if owners missing"></textarea>
+
+        <div class="actions">
+          <button type="submit" id="btn-generate">Generate SKILL.md</button>
+          <button type="button" class="secondary" id="btn-copy" disabled>Copy SKILL.md</button>
+          <button type="button" class="secondary" id="btn-clear">Clear</button>
+        </div>
+        <div id="form-error" class="error" hidden></div>
+        <div id="form-ok" class="ok" hidden></div>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="out-title">
+      <h2 id="out-title">Output (draft)</h2>
+      <p class="hint">MIT draft text. Not listed in marketplace.json. Human PR + QUALITY_BAR required for publish.</p>
+      <pre class="out" id="skill-out" aria-live="polite">Generate to see SKILL.md…</pre>
+      <h2 style="margin-top:1rem;">Optional stubs</h2>
+      <pre class="out" id="stub-out">Enable “Include setup-env / Codex stub panes” to emit example files.</pre>
+    </section>
+  </div>
+
+  <footer>
+    Categories locked to catalog six. Static HTML + vanilla JS — no backend, no accounts.
+    Template reference: <code>skill-template.SKILL.md</code> in this folder.
+  </footer>
+
+  <script src="./generator-core.js"></script>
+  <script src="./generator.js"></script>
+</body>
+</html>

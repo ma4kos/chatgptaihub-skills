@@ -74,11 +74,11 @@ An optional Manus **daily** highlight of a **published** free catalog skill (thr
 
 ### 14. Is the Template Generator live?
 
-**Not yet.** [`TEMPLATE_GENERATOR.md`](./TEMPLATE_GENERATOR.md) is the **fusion-shaped spec** for a future static, client-side form that emits draft `SKILL.md` files. It does not publish to the catalog and must never collect secret values. Until built, authors copy `templates/skill-template/SKILL.md`.
+**Yes.** Open the [Skill Template Generator](./generator/) (static HTML + vanilla JS on Pages). Docs: [`TEMPLATE_GENERATOR.md`](./TEMPLATE_GENERATOR.md). It emits MIT draft `SKILL.md` files only — it does not publish to the catalog and must never collect secret values. You can still hand-copy `templates/skill-template/SKILL.md`.
 
 ### 15. Will the generator auto-list my skill?
 
-No. Generator output (when built) is a **draft starting point**. Listing still requires QUALITY_BAR + human PR to `marketplace.json`.
+No. Generator output is a **draft starting point**. Listing still requires QUALITY_BAR + human PR to `marketplace.json`.
 
 ## Hub, Releases, metrics
 

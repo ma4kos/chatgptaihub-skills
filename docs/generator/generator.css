@@ -1,0 +1,106 @@
+:root {
+  --bg: #0f1419;
+  --panel: #1a2332;
+  --border: #2d3a4d;
+  --text: #e7ecf3;
+  --muted: #9aa8bc;
+  --accent: #3d8bfd;
+  --danger: #f07178;
+  --ok: #7fd962;
+  --warn: #e6c07b;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
+}
+header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+}
+header h1 { margin: 0 0 0.35rem; font-size: 1.35rem; }
+header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.banner {
+  margin: 1rem 1.5rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--warn);
+  border-radius: 8px;
+  background: #2a2418;
+  color: var(--warn);
+  font-size: 0.9rem;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem 1.5rem 2rem;
+}
+@media (max-width: 960px) {
+  .layout { grid-template-columns: 1fr; }
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+}
+.panel h2 { margin: 0 0 0.75rem; font-size: 1.05rem; }
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0.65rem 0 0.25rem;
+}
+input[type="text"], textarea, select {
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.6rem;
+  font: inherit;
+}
+textarea { min-height: 4.5rem; resize: vertical; }
+.row { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+.row label.inline { display: flex; align-items: center; gap: 0.4rem; margin: 0.65rem 0 0; color: var(--text); }
+.actions { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+  font: inherit;
+  cursor: pointer;
+}
+button.secondary { background: #334155; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.error {
+  color: var(--danger);
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  white-space: pre-wrap;
+}
+.ok { color: var(--ok); font-size: 0.9rem; margin-top: 0.5rem; }
+pre.out {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem;
+  max-height: 28rem;
+  overflow: auto;
+  font-size: 0.82rem;
+}
+.hint { color: var(--muted); font-size: 0.8rem; margin-top: 0.25rem; }
+footer {
+  padding: 0 1.5rem 2rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}

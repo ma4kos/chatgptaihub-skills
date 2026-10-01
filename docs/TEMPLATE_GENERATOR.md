@@ -1,79 +1,95 @@
-# Template generator (side-license concept)
+# Template Generator — live tool
 
-## Idea
+**Status:** **Live** on GitHub Pages — static HTML + vanilla JavaScript (no backend).  
+**Open:** [Skill Template Generator](./generator/) · source under `docs/generator/`  
+**Authority:** fusion build plan T1–T9 (2026-10-01). Catalog publish still requires [`QUALITY_BAR.md`](./QUALITY_BAR.md) + human PR.
 
-A **website flow** collects structured inputs and **emits a `SKILL.md`** (plus optional setup stubs). This is a side product / side-license concept adjacent to the free catalog — not a requirement to use free skills.
+Authors can also hand-copy [`templates/skill-template/SKILL.md`](../templates/skill-template/SKILL.md) if they prefer.
 
-```
-User inputs (category, goal, inputs, outputs, env names)
-        ↓
-Generator (deterministic template)
-        ↓
-SKILL.md + optional setup script stubs
-```
+## Problem
 
-## What the site may collect
+Hand-copying the static template is slow and produces inconsistent `SKILL.md` files. The Template Generator is a **guided, client-side authoring accelerator** that collects structured **non-secret** inputs and emits a QUALITY_BAR-shaped `SKILL.md` (plus optional env stub text). It does **not** publish to the free catalog, store secrets, or replace editorial review.
 
-- Skill name / slug
-- Category (support, sales, ops, finance, content, coding-assistant)
-- Goal one-liner
-- Input fields list
-- Output format (markdown template)
-- Env var **names** (never values)
-- Whether cloud setup stubs are requested
+## One-liner
 
-## What it must never collect for embedding
+**Static page + form → client-side fill of `skill-template` → copyable `SKILL.md` (optional env-example stubs); never collects secret values; outputs remain drafts until QUALITY_BAR + catalog PR.**
 
-- Real API keys, OAuth refresh tokens, passwords
-- Customer PII dumps
-- Private spine skill bodies
+## User flow
 
-Emitted files must include a **Secrets** section: **NEVER embed API keys**.
+| Step | Actor | Action | Notes |
+|------|-------|--------|-------|
+| 1 | Author | Open [generator](./generator/) (no login) | GitHub Pages |
+| 2 | Author | Enter skill name; slug auto-suggested kebab-case | Editable |
+| 3 | Author | Pick category enum (six catalog categories) | support / sales / ops / finance / content / coding-assistant |
+| 4 | Author | Fill goal, when-to-use, inputs, output format, instructions, out-of-scope | Structured fields |
+| 5 | Author | Optional env var **NAMES** (UPPER_SNAKE); toggle stubs | Values forbidden |
+| 6 | System | Client-side validate + render | No server round-trip |
+| 7 | System | Show `SKILL.md` + Copy; optional stub pane | Zip = v2 |
+| 8 | Author | Paste into local repo → editorial → PR | Generator is **not** a publish gateway |
 
-## Emitted artifacts (pattern)
+## Inputs (collect)
 
-1. `skills/<slug>/SKILL.md` — instructions + frontmatter
-2. `scripts/setup-env.example.sh` — exports placeholders only
-3. `scripts/cloud-env.codex.example.toml` — **Codex cloud env example as template pattern only** (illustrative)
+| Field | Required | Validation |
+|-------|----------|------------|
+| `skill_name` | yes | 2–100 chars |
+| `skill_slug` | yes | lowercase kebab-case |
+| `category` | yes | catalog six only |
+| `description` | yes | one-line SMB outcome |
+| Purpose / goal | yes | deterministic outcome |
+| `when_to_use` | yes | ≥1 trigger; include Not for |
+| `inputs` | yes | ≥1 |
+| `instructions` | yes | numbered steps |
+| `output_format` | yes | table/checklist shape |
+| `out_of_scope` | yes | include no auto-send / no secrets |
+| `env_var_names` | no | UPPER_SNAKE names only |
+| `include_setup_stubs` | no | default false |
+| dry-run input/expected | should | fictional only |
 
-### Example: env placeholder script
+## Inputs (NEVER collect)
 
-```bash
-# setup-env.example.sh — placeholders only; do not commit real values
-export SUPPORT_TONE="friendly-concise"
-export SLA_HOURS_URGENT="4"
-# export HELPDEST_API_KEY="<<set in runtime secret store>>"
-```
+- Real API keys, OAuth tokens, passwords, session cookies, private keys  
+- Environment **values** (names only)  
+- Customer PII dumps / real ticket corpora  
+- Private spine / webmaster skill bodies  
+- Payment card data  
 
-### Example: Codex cloud env pattern (template only)
+Heuristic: if a field matches secret patterns (`sk-`, `Bearer `, `-----BEGIN`, long base64), **block generate** and show a security warning.
 
-```toml
-# cloud-env.codex.example.toml — PATTERN ONLY, not a live config
-# Maps skill env placeholders to a cloud secret store by NAME.
-[skill.env]
-SUPPORT_TONE = "friendly-concise"
-SLA_HOURS_URGENT = "4"
+## Outputs
 
-[skill.secrets]
-# Names only — values injected by the host at runtime
-# HELPDEST_API_KEY = { from = "secret://helpdesk/api-key" }
-```
+| Artifact | Notes | Emitted text license |
+|----------|-------|----------------------|
+| `SKILL.md` | From skill template | **MIT** (catalog-aligned) |
+| Optional `setup-env.example.sh` | `export NAME="placeholder"` | MIT |
+| Optional `cloud-env.codex.example.toml` | Pattern only | MIT |
 
-## Secrets / cloud setup scripts
+Always emit **Secrets** (`NEVER embed API keys`), **Determinism** (`UNASSIGNED` / `TBD` / no invented facts), and **Out of scope**.
 
-| Artifact | Allowed | Forbidden |
-|----------|---------|-----------|
-| Env name list | yes | real values |
-| `*.example.sh` / `*.example.toml` | yes | production credentials |
-| “How to set secrets in your host” prose | yes | pasting keys into SKILL.md |
-| Auto-deploy into private VPC | no (out of public catalog) | — |
+## Security
 
-## Licensing note
+- Client-side only → no server persistence of form data  
+- Never prompt for secret **values**  
+- No auto-deploy to VPC / private spine  
+- **Never** writes `marketplace.json`
 
-Generator output license should align with catalog TBD (**MIT / CC-BY**). Side-license for the **generator product** (SaaS) may differ from the free emitted skill text — record final split in `CATALOG_DECISIONS.md`.
+## Relation to free catalog
 
-## Relation to free marketplace
+- Catalog remains **hand-curated** MIT listings in `marketplace.json`  
+- Generator output = draft starting point, never auto-listed  
+- Same QUALITY_BAR before `status: published`
 
-- Free catalog ships hand-curated skills + stubs
-- Generator accelerates authors; outputs still pass [`QUALITY_BAR.md`](./QUALITY_BAR.md) before listing
-- Manus daily feature applies to curated catalog entries, not every raw generation
+## Acceptance tests (summary)
+
+| ID | Then |
+|----|------|
+| AT1 | Valid inputs → SKILL.md with required sections populated |
+| AT2 | `My Cool Skill!` → slug `my-cool-skill` |
+| AT3 | Empty env names → Secrets section still present |
+| AT4 | Empty goal → blocked |
+| AT5 | Secret-looking token → blocked; no emit containing it |
+| AT6 | Stubs on + `SUPPORT_TONE` → example sh without real values |
+| AT7 | Category options = exactly six catalog categories |
+
+## What NOT built (MVP)
+
+Backend stores of skills/secrets/PII; auth; direct CI publish; skill runtime; Cap FIRE widgets; auto-listing without human PR.

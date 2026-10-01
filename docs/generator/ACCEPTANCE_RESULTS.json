@@ -1,0 +1,42 @@
+{
+  "results": [
+    {
+      "id": "AT1",
+      "pass": true,
+      "detail": "sections present"
+    },
+    {
+      "id": "AT2",
+      "pass": true,
+      "detail": "slugify => my-cool-skill"
+    },
+    {
+      "id": "AT3",
+      "pass": true,
+      "detail": "secrets section kept"
+    },
+    {
+      "id": "AT4",
+      "pass": true,
+      "detail": "goal / Purpose is required."
+    },
+    {
+      "id": "AT5",
+      "pass": true,
+      "detail": "blocked: Blocked: field content matches a secret pattern. Remove API keys/tokens/private keys before generating."
+    },
+    {
+      "id": "AT6",
+      "pass": true,
+      "detail": "stub ok"
+    },
+    {
+      "id": "AT7",
+      "pass": true,
+      "detail": "support, sales, ops, finance, content, coding-assistant"
+    }
+  ],
+  "passed": 7,
+  "total": 7,
+  "ok": true
+}
